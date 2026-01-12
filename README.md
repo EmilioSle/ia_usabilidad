@@ -100,4 +100,34 @@ Accede a http://localhost:8000/docs y prueba el endpoint interactivamente con lo
 
 ---
 
+## 🚂 Despliegue en Railway
+
+### Despliegue Rápido
+
+1. **Push tu código a GitHub**:
+   ```bash
+   git add .
+   git commit -m "Preparar para Railway"
+   git push origin main
+   ```
+
+2. **Crear proyecto en Railway**:
+   - Ve a [railway.app](https://railway.app/)
+   - Clic en "New Project" → "Deploy from GitHub repo"
+   - Selecciona este repositorio
+
+3. **Configurar variables de entorno** en Railway:
+   ```
+   GROQ_API_KEY=tu_api_key_real
+   HOST=0.0.0.0
+   PORT=8000
+   DEBUG=False
+   ```
+
+4. **¡Listo!** Railway desplegará automáticamente tu aplicación.
+
+📖 **Guía completa**: Ver [RAILWAY_DEPLOY.md](RAILWAY_DEPLOY.md)
+
+---
+
 **¡Sistema listo para probar en Swagger! 🚀**
