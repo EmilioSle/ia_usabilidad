@@ -36,13 +36,35 @@ app.add_middleware(
 # Incluir las rutas
 app.include_router(router, prefix="/api/v1", tags=["ATS - Recruitment System"])
 
+# Health check endpoint para Railway (en la raíz)
+@app.get("/")
+async def root():
+    """Health check principal para Railway"""
+    return {
+        "status": "healthy",
+        "app": settings.app_name,
+        "version": settings.app_version,
+        "message": "API funcionando correctamente"
+    }
+
+@app.get("/health")
+async def health():
+    """Health check alternativo"""
+    return {"status": "ok", "app": settings.app_name}
+
 
 @app.on_event("startup")
 async def startup_event():
     """Evento que se ejecuta al iniciar la aplicación"""
-    print(f"🚀 {settings.app_name} v{settings.app_version} iniciado")
-    print(f"📝 Documentación disponible en: http://{settings.host}:{settings.port}/docs")
-    print(f"🔧 Modo debug: {settings.debug}")
+    try:
+        settings.validate_settings()
+        print(f"🚀 {settings.app_name} v{settings.app_version} iniciado")
+        print(f"📝 Documentación disponible en: http://{settings.host}:{settings.port}/docs")
+        print(f"🔧 Modo debug: {settings.debug}")
+        print(f"✅ GROQ_API_KEY configurada: {bool(settings.groq_api_key)}")
+    except Exception as e:
+        print(f"❌ Error en startup: {e}")
+        raise
 
 
 @app.on_event("shutdown")
