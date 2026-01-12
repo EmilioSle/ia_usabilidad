@@ -2,7 +2,7 @@
 # Script de build para Railway
 
 echo "📦 Instalando dependencias de Python..."
-pip install --upgrade pip
-pip install -r requirements.txt
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
 
 echo "✅ Dependencias instaladas correctamente"
