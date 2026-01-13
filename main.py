@@ -1,3 +1,8 @@
+import warnings
+
+# Suprimir advertencias de Pydantic sobre namespace 'model_' en dependencias
+warnings.filterwarnings("ignore", message=".*Field.*has conflict with protected namespace.*model_.*")
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.api import router

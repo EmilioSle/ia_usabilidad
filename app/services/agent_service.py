@@ -1,15 +1,11 @@
 import json
 import os
-import warnings
 from typing import Dict, Any
 from agno.agent import Agent
 from agno.models.groq import Groq
 from agno.tools.models.groq import GroqTools
 from app.config import settings
 from app.models.schemas import VacanteData, CandidatoData
-
-# Suprimir advertencias de Pydantic sobre namespace 'model_'
-warnings.filterwarnings("ignore", message=".*Field.*has conflict with protected namespace.*model_.*")
 
 
 class AgentService:
